@@ -41,49 +41,55 @@ function CreateOrder() {
     const navigation = useNavigation()
     const isSubmitting = navigation.state === 'submitting'
     const formErrors = useActionData()
+    const divStyles = 'flex flex-col gap-2 mb-5 sm:flex-row sm:items-center'
+    const labelSty = 'sm:basis-40'
 
     return (
-        <div>
-            <h2>{order}</h2>
+        <div className="px-4 py-6">
+            <h2 className="mb-8 text-xl font-semibold">{order}</h2>
 
             {/*       <Form method="POST" action="/order/new"></Form> */}
             <Form method="POST">
-                <div>
-                    <label>First Name</label>
+                <div className={divStyles}>
+                    <label className={labelSty}>First Name</label>
                     <input
                         type="text"
                         name="customer"
                         required
-                        className="input"
+                        className="input grow"
                     />
                 </div>
 
-                <div>
-                    <label>Phone number</label>
-                    <div>
+                <div className={divStyles}>
+                    <label className={labelSty}>Phone number</label>
+                    <div className="grow">
                         <input
                             type="tel"
                             name="phone"
                             required
-                            className="input"
+                            className="w-full input"
                         />
                     </div>
-                    {formErrors?.phone && <p>{formErrors.phone}</p>}
+                    {formErrors?.phone && (
+                        <p className="p-2 mt-2 text-xs text-red-700 bg-red-100 rounded-md">
+                            {formErrors.phone}
+                        </p>
+                    )}
                 </div>
 
-                <div>
-                    <label>Address</label>
-                    <div>
+                <div className={divStyles}>
+                    <label className={labelSty}>Address</label>
+                    <div className="grow">
                         <input
                             type="text"
                             name="address"
                             required
-                            className="input"
+                            className="w-full input"
                         />
                     </div>
                 </div>
 
-                <div>
+                <div className="flex items-center gap-5 mb-12">
                     <input
                         type="checkbox"
                         name="priority"
@@ -103,7 +109,7 @@ function CreateOrder() {
                         name="cart"
                         value={JSON.stringify(cart)}
                     />
-                    <Button disabled={isSubmitting}>
+                    <Button type="primary" disabled={isSubmitting}>
                         {isSubmitting ? 'Placing order...' : 'Order now'}
                     </Button>
                 </div>
