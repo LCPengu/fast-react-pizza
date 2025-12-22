@@ -9,7 +9,7 @@ import CreateOrder, {
 import Order, { loader as orderLoader } from './features/order/Order.jsx'
 import AppLayout from './features/ui/AppLayout.jsx'
 import Error from './Error.jsx'
-import { loader as updateOrderAction } from './features/order/UpdateOrder.jsx'
+import { action as updateOrderAction } from './features/order/UpdateOrder.jsx'
 
 const router = createBrowserRouter([
     {

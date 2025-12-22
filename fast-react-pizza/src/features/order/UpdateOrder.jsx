@@ -1,17 +1,21 @@
-import React from 'react'
-import Button from '../ui/Button'
 import { useFetcher } from 'react-router-dom'
+import Button from '../ui/Button'
+import { updateOrder } from '../services/apiRestaurant'
 
-export default function UpdateOrder({ order }) {
+function UpdateOrder({ order }) {
     const fetcher = useFetcher()
+
     return (
-        <fetcher.form method="PATCH" className="text-right">
+        <fetcher.Form method="PATCH" className="text-right">
             <Button type="primary">Make priority</Button>
-        </fetcher.form>
+        </fetcher.Form>
     )
 }
 
-async function action({ req, params }) {
-    console.log('update')
+export default UpdateOrder
+
+export async function action({ request, params }) {
+    const data = { priority: true }
+    await updateOrder(params.orderId, data)
     return null
 }
